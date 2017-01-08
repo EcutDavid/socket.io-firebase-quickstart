@@ -1,0 +1,22 @@
+.header {
+  padding: 20px;
+  background: skyblue;
+  text-align: center;
+
+  .btn-container {
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: #fff;
+    font-weight: bold;
+  }
+
+  button {
+    border-radius: 20px;
+    margin: 0 10px;
+    opacity: 0.7;
+    font-weight: bold;
+  }
+}

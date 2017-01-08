@@ -1,0 +1,9 @@
+.game-board {
+  display: block;
+  background: #000;
+  margin: 20px auto;
+
+  rect, circle {
+    fill: #fff;
+  }
+}

@@ -1,20 +1,23 @@
 import React from 'react';
-
+import Header from './Header';
+import GameBoard from './GameBoard';
+import socketIO from 'socket.io-client';
 import 'styles/main.scss';
 
-class AppComponent extends React.Component {
+const io = socketIO('localhost:5000');
+
+// get width and height from server init loading
+export default class Main extends React.Component {
+  constructor() {
+    super();
+  }
+
   render() {
     return (
-      <div className="index">
-        <button
-          className="button"
-          style={{ display: 'block', margin: '30px auto' }}
-        >
-          Hello world!
-        </button>
+      <div className='app'>
+        <Header socket={io} />
+        <GameBoard socket={io} />
       </div>
     );
   }
 }
-
-export default AppComponent;

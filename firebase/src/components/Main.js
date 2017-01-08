@@ -5,7 +5,7 @@ import { login } from 'app/helpers/firebase';
 
 // login()
 
-class AppComponent extends React.Component {
+export default class Main extends React.Component {
   render() {
     return (
       <div className="index">
@@ -19,5 +19,3 @@ class AppComponent extends React.Component {
     );
   }
 }
-
-export default AppComponent;
