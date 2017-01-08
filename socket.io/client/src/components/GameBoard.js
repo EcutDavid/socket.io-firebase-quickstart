@@ -27,18 +27,17 @@ export default class Header extends React.Component {
         width={boardInfo.board.width}
         height={boardInfo.board.height}
       >
-      {
-        gameInfo.paddles.map((d, i) => (
-          <rect
-            x={d.posX}
-            y={d.posY}
-            width={boardInfo.paddle.width}
-            height={boardInfo.paddle.height}
-            key={i}
-          />
-        ))
-      }
-
+        {
+          gameInfo.paddles.map((d, i) => (
+            <rect
+              x={d.posX}
+              y={d.posY}
+              width={boardInfo.paddle.width}
+              height={boardInfo.paddle.height}
+              key={i}
+            />
+          ))
+        }
         <circle
           cx={gameInfo.ball.posX}
           cy={gameInfo.ball.posY}
@@ -46,9 +45,7 @@ export default class Header extends React.Component {
         />
       </svg>
     ) : (
-      <h2>
-        Connecting server
-      </h2>
+      <span />
     );
   }
 }

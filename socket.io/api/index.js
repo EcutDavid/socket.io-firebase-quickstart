@@ -16,7 +16,15 @@ io.on('connection', socket => {
   socket.emit('rule', CLIENT_SIDE_DEFAULT);
   socket.emit('update', gameController.getGameInfo());
 
+  socket.on('userRequest', isUser1 => {
+    gameController.setUser(socket.id, isUser1);
+  });
+
+  socket.on('changeDir', dir => {
+    gameController.setPaddleDir(socket.id, dir);
+  });
+
   socket.on('disconnect', () => {
-    console.log('disconnect');
+    gameController.removeUser(socket.id);
   });
 });

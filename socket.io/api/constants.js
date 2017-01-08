@@ -4,6 +4,7 @@ const PADDLE_WIDTH = 10;
 const PADDLE_HEIGHT = 60;
 const PADDLE_MARGIN_X = 10;
 const BALL_RADIUS = 10;
+const PADDLE_SPEED = 11;
 
 const CLIENT_SIDE_DEFAULT = {
   board: {
@@ -26,5 +27,6 @@ module.exports = {
   PADDLE_HEIGHT,
   PADDLE_MARGIN_X,
   BALL_RADIUS,
-  CLIENT_SIDE_DEFAULT
+  CLIENT_SIDE_DEFAULT,
+  PADDLE_SPEED
 };
