@@ -30,6 +30,10 @@ class GameController {
     };
   }
 
+  checkIsUsersReady() {
+    return this.user1.userID && this.user2.userID;
+  }
+
   setUser(id, isUser1) {
     if (isUser1) {
       return this.user1.userID = id;
@@ -82,8 +86,10 @@ class GameController {
   }
 
   update() {
-    this.ball.posX += this.ball.speedX;
-    this.ball.posY += this.ball.speedY;
+    if (this.checkIsUsersReady()) {
+      this.ball.posX += this.ball.speedX;
+      this.ball.posY += this.ball.speedY;
+    }
 
     if (this.ball.posX < -BALL_RADIUS) {
       this.resetBall();

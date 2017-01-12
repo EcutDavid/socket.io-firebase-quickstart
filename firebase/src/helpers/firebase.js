@@ -5,10 +5,9 @@ const FIREBASE_CONFIG = {
   authDomain: 'fir-quickstart-1d1f5.firebaseapp.com',
   databaseURL: 'https://fir-quickstart-1d1f5.firebaseio.com'
 };
-const GOOGLE_AUTH_PROVIDER = new firebase.auth.GoogleAuthProvider();
-
 firebase.initializeApp(FIREBASE_CONFIG);
 
+const GOOGLE_AUTH_PROVIDER = new firebase.auth.GoogleAuthProvider();
 export function login() {
     firebase.auth().signInWithPopup(GOOGLE_AUTH_PROVIDER).then(result => {
     // This gives you a Google Access Token. You can use it to access the Google API
@@ -22,8 +21,17 @@ export function login() {
   });
 }
 
+export function logout() {
+  firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+  }, function() {
+    // An error happened.
+  });
+}
+
 window.firebase = firebase;
 
+firebase.database().ref().on('value', snapshot => console.log(snapshot.val()))
 setInterval(function () {
   // console.log(firebase.auth().currentUser);
 }, 500);
