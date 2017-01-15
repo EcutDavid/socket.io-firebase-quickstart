@@ -1,5 +1,8 @@
 ## Firebase & socket.io quick start
 
+#### Develop environment
+Node >= 6, npm >= 3
+
 #### Pong game with socket.io
 ```
 cd socket.io/api && npm install && node index.js
