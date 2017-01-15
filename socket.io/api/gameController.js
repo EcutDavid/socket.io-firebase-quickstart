@@ -3,15 +3,16 @@ const {
   BOARD_HEIGHT,
   PADDLE_WIDTH,
   PADDLE_HEIGHT,
-  PADDLE_MARGIN_X,
   BALL_RADIUS,
   PADDLE_SPEED
 } = require('./constants');
+const Ball = require('./ball');
+const Paddle = require('./paddle');
 
 class GameController {
   constructor() {
-    this.resetBall();
-    this.resetPaddle();
+    this.ball = new Ball();
+    this.paddles = [new Paddle(true), new Paddle(false)];
     this.user1 = { isUp: false, isDown: false, userID: undefined };
     this.user2 = { isUp: false, isDown: false, userID: undefined };
   }
@@ -60,31 +61,6 @@ class GameController {
     });
   }
 
-  resetBall() {
-    this.ball = {
-      posX: BOARD_WIDTH / 2,
-      posY: BOARD_HEIGHT / 2,
-      speedX: (4 + Math.random() * 4) * (Math.random() > 0.5 ? 1 : -1),
-      speedY: (4 + Math.random() * 4) * (Math.random() > 0.5 ? 1 : -1)
-    };
-  }
-
-  resetPaddle() {
-    this.paddles = [{
-      posX: PADDLE_MARGIN_X,
-      posY: (BOARD_HEIGHT - PADDLE_HEIGHT) / 2,
-      isUp: false,
-      isDown: false,
-      isLeft: true
-    }, {
-      posX: BOARD_WIDTH - PADDLE_WIDTH - PADDLE_MARGIN_X,
-      posY: (BOARD_HEIGHT - PADDLE_HEIGHT) / 2,
-      isUp: false,
-      isDown: false,
-      isLeft: false
-    }];
-  }
-
   update() {
     if (this.checkIsUsersReady()) {
       this.ball.posX += this.ball.speedX;
@@ -92,10 +68,10 @@ class GameController {
     }
 
     if (this.ball.posX < -BALL_RADIUS) {
-      this.resetBall();
+      this.ball.reset();
     }
     if (this.ball.posX > (BOARD_WIDTH + BALL_RADIUS)) {
-      this.resetBall();
+      this.ball.reset();
     }
 
     if (this.ball.posY < BALL_RADIUS) {
@@ -107,7 +83,7 @@ class GameController {
       this.ball.speedY *= -1;
     }
 
-    this.paddles.forEach((d, i) => {
+    this.paddles.forEach(d => {
       d.posY += d.isDown ? PADDLE_SPEED : 0;
       d.posY -= d.isUp ? PADDLE_SPEED : 0;
 
